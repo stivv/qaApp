@@ -9,7 +9,7 @@ const routes = [
     component: Questions
   },
   {
-    path: '/question',
+    path: '/question/:id',
     name: 'view-question',
     component: QuestionsView
   }

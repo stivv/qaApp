@@ -4,11 +4,15 @@
       Questions:
     </h1>
     <ul class="ml-3">
-      <li class="text-gray-500 py-2">
-        What is a question?
+      <li 
+        v-for="question in questions"
+        :key="question.id"
+        class="text-gray-500 py-2"
+      >
+        {{ question.question }}
         <div class="ml-3 mt-1">
           <router-link
-            to="/question"
+            :to="{name: 'view-question', params: {id: question.id}}"
             class="text-sm text-blue-500 tracking-tight" 
             @click.prevent
           >
@@ -21,3 +25,12 @@
     </ul>
   </div>
 </template>
+
+<script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const questions = computed(() => store.getters['questions/getQuestions']);
+</script>
