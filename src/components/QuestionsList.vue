@@ -18,7 +18,7 @@
           >
             View responses/Answer
           </router-link>
-          <span class="text-sm ml-2 text-gray-400 tracking-tight">(0) responses</span>
+          <span class="text-sm ml-2 text-gray-400 tracking-tight">({{question.responses.length}}) responses</span>
         </div>
         <hr class="my-2">
       </li>
