@@ -1,6 +1,11 @@
 export default {
   setQuestions: (state, payload) => {
     if(payload['id']){
+      state.questions.map(i => {
+        if(i.id === payload['id'])
+          i = payload;
+        return i;
+      })
       return;
     }
     
