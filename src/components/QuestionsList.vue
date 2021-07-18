@@ -19,6 +19,7 @@
             View responses/Answer
           </router-link>
           <span class="text-sm ml-2 text-gray-400 tracking-tight">({{question.responses.length}}) responses</span>
+          <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="deleteQuestion(question)">Delete</a>
         </div>
         <hr class="my-2">
       </li>
@@ -33,4 +34,8 @@ import { useStore } from "vuex";
 const store = useStore();
 
 const questions = computed(() => store.getters['questions/getQuestions']);
+
+const deleteQuestion = (question) => {
+  store.dispatch('questions/deleteQuestion', question)
+}
 </script>
