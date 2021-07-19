@@ -19,7 +19,7 @@
             View responses/Answer
           </router-link>
           <span class="text-sm ml-2 text-gray-400 tracking-tight">({{question.responses.length}}) responses</span>
-          <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="deleteQuestion(question)">Delete</a>
+          <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="deleteQuestion(question.id)">Delete</a>
         </div>
         <hr class="my-2">
       </li>

@@ -23,6 +23,6 @@ export default {
   },
 
   deleteQuestion: (state, payload) => {
-    state.questions = state.questions.map(i => i.id !== payload['id'])
+    state.questions = state.questions.filter(i => i.id !== payload)
   }
 }
