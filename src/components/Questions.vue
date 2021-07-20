@@ -23,9 +23,10 @@
 </template>
 
 <script setup>
-import QuestionsList from './QuestionsList.vue'
-import { ref } from 'vue'
+import BaseForm from "./Form.vue";
+import QuestionsList from "./QuestionsList.vue";
+import { ref } from "vue";
 
-const show_form = ref(false)
+const show_form = ref(false);
 
 </script>
