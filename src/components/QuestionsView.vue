@@ -13,7 +13,12 @@
     <a href="#" class="text-xs ml-4 text-blue-500" @click.prevent="show_respond_form = true">Respond</a>
   </h5>
 
-  <base-form v-if="show_respond_form" name="respond" label="Type your response" @close="show_respond_form = false" />
+  <base-form 
+    v-if="show_respond_form" 
+    name="response" 
+    label="Type your response"
+    @submit="submit"
+    @close="show_respond_form = false" />
   
   <template v-else>
     <ul v-if="question.responses.length" class="ml-3">
@@ -28,7 +33,7 @@
     </ul>
     <p v-else class="text-sm mt-2 text-gray-500">No responses found.</p>
   </template>
-  
+
 </template>
 
 <script setup>
@@ -43,6 +48,16 @@ const route = useRoute()
 const show_respond_form = ref(false)
 
 const question = computed(() => store.getters['questions/getQuestion'])
+
+const submit = (form) => {
+
+  let obj = {id: route.params.id, response: form.response};
+
+  store.dispatch('questions/addResponse', obj);
+
+  show_respond_form.value = false;
+
+}
 
 onBeforeMount(() => store.dispatch('questions/setQuestion', route.params.id))
 </script>

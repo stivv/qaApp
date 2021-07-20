@@ -27,8 +27,8 @@ export default {
   },
 
   addResponse: (state, payload) => {
-    let question = state.questions.find(i => parseInt(i.id) === parseInt(payload))
-    let response = {id: question.response.length + 1, response: payload.response}
+    let question = state.questions.find(i => parseInt(i.id) === parseInt(payload.id))
+    let response = {id: question.responses.length + 1, response: payload.response}
     question.responses = [response, ...question.responses];
 
     state.questions = state.questions.map(i => {

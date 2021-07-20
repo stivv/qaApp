@@ -8,7 +8,13 @@
     Ask your question and you will get an answer
   </p>
 
-  <base-form v-if="show_form" name="question" label="Question" @close="show_form = false" />
+  <base-form 
+    v-if="show_form" 
+    name="question" 
+    label="Question" 
+    @submit="submit"
+    @close="show_form = false" />
+
   <div v-else>
     <p class="mt-1 text-gray-400">
       Click 
@@ -25,7 +31,15 @@
 import BaseForm from "./Form.vue";
 import QuestionsList from "./QuestionsList.vue";
 import { ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
 
 const show_form = ref(false);
+
+const submit = (form) => {
+  store.dispatch('questions/setQuestions', form);
+  show_form.value = false
+}
 
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit" class="mt-4">
+  <form @submit.prevent="$emit('submit', form)" class="mt-4">
     <label :for="name">{{label}}</label>
     <br>
     <textarea 
@@ -21,17 +21,12 @@ import { useStore } from "vuex";
 
 const store = useStore();
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'submit'])
 
 const props = defineProps(['name', 'label'])
 
 const { name, label } = toRefs(props)
 
 const form = reactive({})
-
-const submit = () => {
-  store.dispatch('questions/setQuestions', form)
-  emit('close')
-}
 
 </script>
