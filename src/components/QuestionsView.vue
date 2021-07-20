@@ -10,28 +10,35 @@
   
   <h5 class="text-md text-gray-600 mt-5 tracking-tight">
     Responses:
-    <a href="#" class="text-xs ml-4 text-blue-500" @click.prevent>Respond</a>
+    <a href="#" class="text-xs ml-4 text-blue-500" @click.prevent="show_respond_form = true">Respond</a>
   </h5>
-  <ul v-if="question.responses.length" class="ml-3">
-    <li 
-      v-for="response in question.responses" 
-      :key="response.id"
-      class="mt-3 text-gray-500"
-    >
-      {{response.response}}
-      <hr class="my-2">
-    </li>
-  </ul>
-  <p v-else class="text-sm mt-2 text-gray-500">No responses found.</p>
+
+  <base-form v-if="show_respond_form" name="respond" label="Type your response" @close="show_respond_form = false" />
+  <template v-else>
+    <ul v-if="question.responses.length" class="ml-3">
+      <li 
+        v-for="response in question.responses" 
+        :key="response.id"
+        class="mt-3 text-gray-500"
+      >
+        {{response.response}}
+        <hr class="my-2">
+      </li>
+    </ul>
+    <p v-else class="text-sm mt-2 text-gray-500">No responses found.</p>
+  </template>
 </template>
 
 <script setup>
-import { computed, onBeforeMount } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
+import BaseForm from './Form.vue'
 
 const store = useStore()
 const route = useRoute()
+
+const show_respond_form = ref(false)
 
 const question = computed(() => store.getters['questions/getQuestion'])
 

@@ -24,7 +24,6 @@
 
 <script setup>
 import QuestionsList from './QuestionsList.vue'
-import BaseForm from './Form.vue'
 import { ref } from 'vue'
 
 const show_form = ref(false)

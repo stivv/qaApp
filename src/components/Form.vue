@@ -11,6 +11,7 @@
       class="border border-gray-300"></textarea>
     <br>
     <button type="submit" class="bg-blue-500 text-blue-100 py-1 px-3 rounded">Submit</button>
+    <button type="button" class="bg-gray-400 text-gray-900 ml-2 py-1 px-3 rounded" @click="$emit('close')">Cancel</button>
   </form>
 </template>
 
