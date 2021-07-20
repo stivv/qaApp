@@ -8,4 +8,7 @@ export default {
   deleteQuestion: ({commit}, payload) => {
     commit('deleteQuestion', payload)
   },
+  addResponse: ({commit}, payload) => {
+    commit('addResponse', payload)
+  },
 }

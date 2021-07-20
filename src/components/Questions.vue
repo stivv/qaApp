@@ -16,7 +16,6 @@
       to ask a question.
     </p>
 
-
     <questions-list />
   </div>
 

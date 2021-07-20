@@ -14,6 +14,7 @@
   </h5>
 
   <base-form v-if="show_respond_form" name="respond" label="Type your response" @close="show_respond_form = false" />
+  
   <template v-else>
     <ul v-if="question.responses.length" class="ml-3">
       <li 
@@ -27,6 +28,7 @@
     </ul>
     <p v-else class="text-sm mt-2 text-gray-500">No responses found.</p>
   </template>
+  
 </template>
 
 <script setup>
