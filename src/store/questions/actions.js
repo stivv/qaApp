@@ -11,4 +11,7 @@ export default {
   addResponse: ({commit}, payload) => {
     commit('addResponse', payload)
   },
+  deleteResponse: ({commit}, payload) => {
+    commit('deleteResponse', payload)
+  },
 }

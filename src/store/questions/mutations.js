@@ -38,5 +38,13 @@ export default {
     });
 
     state.question = question;
-  }
+  },
+
+  deleteResponse: (state, payload) => {
+    let question = state.questions.find(i => parseInt(i.id) === parseInt(payload.question))
+
+    question.responses = question.responses.filter(i => i.id !== payload.response)
+
+    state.question = question;
+  },
 }

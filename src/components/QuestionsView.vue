@@ -28,6 +28,14 @@
         class="mt-3 text-gray-500"
       >
         {{response.response}}
+        <a 
+          href="#" 
+          class="text-xs ml-4 text-blue-500"
+          @click.prevent="$store.dispatch('questions/deleteResponse',{question: question.id, response: response.id})"
+        >
+          Delete
+        </a>
+
         <hr class="my-2">
       </li>
     </ul>
