@@ -3,7 +3,14 @@
     <h1 class="text-xl font-extrabold text-gray-900 tracking-tight">
       Questions:
     </h1>
-    <ul class="ml-3">
+    
+    <base-form 
+      v-if="show_form" 
+      name="question" 
+      label="edit question" 
+      @close="show_form = false" />
+
+    <ul class="ml-3" v-else>
       <li 
         v-for="question in questions"
         :key="question.id"
@@ -19,6 +26,7 @@
             View responses/Answer
           </router-link>
           <span class="text-sm ml-2 text-gray-400 tracking-tight">({{question.responses.length}}) responses</span>
+          <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="show_form = true">Edit</a>
           <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="deleteQuestion(question.id)">Delete</a>
         </div>
         <hr class="my-2">
@@ -28,10 +36,13 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import BaseForm from "./Form.vue";
 
 const store = useStore();
+
+const show_form = ref(false)
 
 const questions = computed(() => store.getters['questions/getQuestions']);
 
