@@ -23,10 +23,14 @@ const store = useStore();
 
 const emit = defineEmits(['close', 'submit'])
 
-const props = defineProps(['name', 'label'])
+const props = defineProps(['name', 'label', 'editableId'])
 
 const { name, label } = toRefs(props)
 
 const form = reactive({})
+
+if(props.editableId){
+  Object.assign(form, {id: props.editableId})
+}
 
 </script>

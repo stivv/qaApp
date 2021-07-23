@@ -5,6 +5,9 @@ export default {
   setQuestion: ({commit}, payload) => {
     commit('setQuestion', payload)
   },
+  editQuestion: ({commit}, payload) => {
+    commit('editQuestion', payload)
+  },
   deleteQuestion: ({commit}, payload) => {
     commit('deleteQuestion', payload)
   },

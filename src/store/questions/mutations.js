@@ -22,6 +22,14 @@ export default {
     state.question = state.questions.find(i => parseInt(i.id) === parseInt(payload))
   },
 
+  editQuestion: (state, payload) => {
+    state.questions = state.questions.map(i => {
+      if(i.id === payload['id'])
+        i[question] = payload[question];
+      return i;
+    })
+  },
+
   deleteQuestion: (state, payload) => {
     state.questions = state.questions.filter(i => i.id !== payload)
   },
