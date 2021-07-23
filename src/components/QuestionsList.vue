@@ -9,6 +9,7 @@
       name="question" 
       label="edit question"
       :editable-id="edit_question"
+      :value="question_val"
       @submit="editQuestion"
       @close="show_form = false" />
 
@@ -28,7 +29,7 @@
             View responses/Answer
           </router-link>
           <span class="text-sm ml-2 text-gray-400 tracking-tight">({{question.responses.length}}) responses</span>
-          <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="show_form = true; edit_question = question.id">Edit</a>
+          <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="show_form = true; question_val = question.question; edit_question = question.id">Edit</a>
           <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="deleteQuestion(question.id)">Delete</a>
         </div>
         <hr class="my-2">
@@ -46,12 +47,15 @@ const store = useStore();
 
 const show_form = ref(false)
 const edit_question = ref(false)
+const question_val = ref(false)
 
 const questions = computed(() => store.getters['questions/getQuestions']);
 
 const editQuestion = (form) => {
-  store.dispatch('questions/editQuestion', form)
-  edit_question.value = false
+  store.dispatch('questions/editQuestion', form);
+  edit_question.value = false;
+  question_val.value = false;
+  show_form.value = false;
 }
 
 const deleteQuestion = (question) => {

@@ -16,21 +16,27 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, reactive, toRefs } from "vue";
+import { defineProps, defineEmits, reactive, toRefs, onBeforeMount } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 
 const emit = defineEmits(['close', 'submit'])
 
-const props = defineProps(['name', 'label', 'editableId'])
+const props = defineProps(['name', 'label', 'editableId', 'value'])
 
 const { name, label } = toRefs(props)
 
 const form = reactive({})
 
-if(props.editableId){
-  Object.assign(form, {id: props.editableId})
-}
+onBeforeMount(() => {
+  if(props.editableId){
+    Object.assign(form, {
+        id: props.editableId,
+        [props.name]: props.value
+      }
+    )
+  }
+})
 
 </script>
