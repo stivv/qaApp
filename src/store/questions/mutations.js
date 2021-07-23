@@ -25,7 +25,7 @@ export default {
   editQuestion: (state, payload) => {
     state.questions = state.questions.map(i => {
       if(i.id === payload['id'])
-        i[question] = payload[question];
+        i['question'] = payload['question'];
       return i;
     })
   },
