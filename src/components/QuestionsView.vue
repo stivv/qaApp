@@ -17,6 +17,8 @@
     v-if="show_respond_form" 
     name="response" 
     label="Type your response"
+    :value="response_val"
+    :editableId="edit_response"
     @submit="submit"
     @close="show_respond_form = false" />
   
@@ -28,6 +30,7 @@
         class="mt-3 text-gray-500"
       >
         {{response.response}}
+        <a class="text-sm ml-2 text-blue-500 tracking-tight" @click.prevent="show_respond_form = true; response_val = response.response; edit_response = question.id">Edit</a>
         <a 
           href="#" 
           class="text-xs ml-4 text-blue-500"
@@ -54,16 +57,23 @@ const store = useStore()
 const route = useRoute()
 
 const show_respond_form = ref(false)
+const response_val = ref(false)
+const edit_response = ref(false)
 
 const question = computed(() => store.getters['questions/getQuestion'])
 
 const submit = (form) => {
-
-  let obj = {id: route.params.id, response: form.response};
-
-  store.dispatch('questions/addResponse', obj);
+  if(form['id']){
+    store.dispatch('questions/editResponse', Object.assign(form, {question: route.params.id}));
+  }else {
+    let obj = {id: route.params.id, response: form.response};
+  
+    store.dispatch('questions/addResponse', obj);
+  }
 
   show_respond_form.value = false;
+  response_val.value = false;
+  edit_response.value = false;
 
 }
 

@@ -48,6 +48,18 @@ export default {
     state.question = question;
   },
 
+  editResponse: (state, payload) => {
+    let question = state.questions.find(i => parseInt(i.id) === parseInt(payload.question))
+
+    question.responses = question.responses.map(i => {
+      if(i.id === payload['id'])
+        i['response'] = payload['response'];
+      return i;
+    })
+
+    state.question = question;
+  },
+
   deleteResponse: (state, payload) => {
     let question = state.questions.find(i => parseInt(i.id) === parseInt(payload.question))
 
